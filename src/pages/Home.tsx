@@ -1,14 +1,14 @@
 const pageContainerStyle = {
   backgroundColor: "#232d25",
   color: "#fefaf4",
-  height: "100vh",
   display: "flex",
+  height: "100vh",
   justifyContent: "center",
   alignItems: "center",
 }
 
 const textContainerStyle = {
-  maxWidth: "550px", fontSize: "20px", margin: "32px",
+  maxWidth: "550px", fontSize: "20px", padding: "32px 16px",
 }
 
 const textEmphasisStyle = {
@@ -23,6 +23,8 @@ const linksContainerStyle = {
 }
 
 function Home() {
+  window.innerWidth < 768 && (textContainerStyle.fontSize = "16px") && (linksContainerStyle.fontSize = "12px") && (linksContainerStyle.gap = "12px")
+
   return (
     <div style={pageContainerStyle}>
       <div style={textContainerStyle}>
@@ -30,7 +32,7 @@ function Home() {
         <br />
         <p>I'm currently interning at <a href="https://rbc.com/" target="_blank">RBC</a> in the Online Banking and Payments team, developing the services so that 20+ million people and businesses can bank with confidence.</p>
         <br />
-        <p>Previous internships at Decipad (pipelines and interpreters) and Digitera Interactive (native Android).</p>
+        <p>Previous internships at <a href="https://www.decipad.com/" target="_blank">Decipad</a> (pipelines and interpreters) and Digitera Interactive (native Android).</p>
         <br />
         <p>Currently studying Computer Science at Carleton University in Ottawa, Canada. <span style={textEmphasisStyle}>Open for internships starting September 2024.</span></p>
         <br />
