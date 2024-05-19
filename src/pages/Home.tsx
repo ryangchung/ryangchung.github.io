@@ -2,6 +2,7 @@ const pageContainerStyle = {
   backgroundColor: "#232d25",
   color: "#fefaf4",
   display: "flex",
+  width: "100%",
   height: "100vh",
   justifyContent: "center",
   alignItems: "center",
