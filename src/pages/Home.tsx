@@ -29,11 +29,11 @@ function Home() {
   return (
     <div style={pageContainerStyle}>
       <div style={textContainerStyle}>
-        <p>Hello (bonjour)! I'm Ryan, a software developer interested in all matters infrastructure.</p>
+        <p>Bonjour-Hi! I'm Ryan, a software developer interested in all matters infrastructure.</p>
         <br />
-        <p>I'm currently interning at <a href="https://rbc.com/" target="_blank">RBC</a> in the Online Banking and Payments team, developing the services so that 20+ million people and businesses can bank with confidence.</p>
+        <p>I just finished an internship at <a href="https://rbc.com/" target="_blank">RBC</a> in the Online Banking and Payments team, developing the services so that 20+ million people and businesses can bank with confidence.</p>
         <br />
-        <p>Previous internships at <a href="https://www.decipad.com/" target="_blank">Decipad</a> (pipelines and interpreters) and Digitera Interactive (native Android).</p>
+        <p>Other previous internships at <a href="https://www.decipad.com/" target="_blank">Decipad</a> (pipelines and interpreters) and Digitera Interactive (native Android).</p>
         <br />
         <p>Currently studying Computer Science at Carleton University in Ottawa, Canada. <span style={textEmphasisStyle}>Open for internships starting September 2024.</span></p>
         <br />
