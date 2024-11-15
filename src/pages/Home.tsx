@@ -29,7 +29,7 @@ function Home() {
   return (
     <div style={pageContainerStyle}>
       <div style={textContainerStyle}>
-        <p>Bonjour-Hi! I'm Ryan, a software developer interested in all matters infrastructure and communities, ammassing over 2.5 years of internship and contract experience.</p>
+        <p>Bonjour-Hi! I'm Ryan, a software developer interested in all matters infrastructure and communities, amassing over 2.5 years of internship and contract experience.</p>
         <br />
         <p>Returning to <a href="https://rbc.com/" target="_blank">RBC</a> for the Winter 2025 term in the International Money Transfers team, so that 20+ million people and businesses can bank with confidence.</p>
         <br />
