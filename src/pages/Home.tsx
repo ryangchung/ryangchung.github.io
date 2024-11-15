@@ -37,7 +37,7 @@ function Home() {
         <br />
         <p>Currently studying Computer Science at Carleton University in Ottawa and serving as an executive in the 3,000-member <a href="https://ccss.carleton.ca/">Carleton Computer Science Society</a>, where I manage funding and open-source initiatives.</p>
         <br />
-        <p style={textEmphasisStyle}>Open for internships starting May 2024.</p>
+        <p style={textEmphasisStyle}>Open for internships starting May 2025.</p>
         <br />
         <div style={linksContainerStyle}>
           <a href="https://www.linkedin.com/in/ryanckc/" target="_blank">LinkedIn</a> ✦
