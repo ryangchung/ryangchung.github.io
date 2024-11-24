@@ -7,6 +7,8 @@ interface Props {
 const { title, description } = Astro.props;
 
 import Head from "../components/Head.astro";
+
+const isDev = import.meta.env.DEV;
 ---
 
 <!doctype html>
@@ -14,7 +16,7 @@ import Head from "../components/Head.astro";
 	<Head title={title} description={description} />
 
 	<body>
-		<div class="page-container">
+		<div class={isDev ? "dev-debug page-container" : "page-container"}>
 			<div class="text-container">
 				<slot />
 			</div>
@@ -36,6 +38,9 @@ import Head from "../components/Head.astro";
 	* {
 		padding: 0;
 		margin: 0;
+	}
+
+	.dev-debug * {
 		outline: 1px solid red;
 	}
 
