@@ -6,16 +6,28 @@ import HomeContent from "../content/home.md";
 <HomeLayout title="Ryan Chung - Software Developer" description="My homepage">
 	<HomeContent />
 	<div class="links-container">
-		<a href="https://www.linkedin.com/in/ryanckc/" target="_blank"
-			>LinkedIn</a
-		> ✦
-		<a href="https://github.com/ryangchung" target="_blank">GitHub</a> ✦
-		<a
-			href="./Ryan_Chung_November_2024.pdf"
-			target="_blank"
-			type="application/pdf">Resume</a
-		> ✦
-		<a href="mailto://ryan.chung.cs@gmail.com" target="_blank">Email</a>
+		<span class="link-item">
+			<span class="mobile-links-container-star">✦</span>
+			<a href="https://www.linkedin.com/in/ryanckc/" target="_blank"
+				>LinkedIn</a
+			>
+		</span>
+		<span class="link-item">
+			<span>✦</span>
+			<a href="https://github.com/ryangchung" target="_blank">GitHub</a>
+		</span>
+		<span class="link-item">
+			<span>✦</span>
+			<a
+				href="./Ryan_Chung_November_2024.pdf"
+				target="_blank"
+				type="application/pdf">Resume</a
+			>
+		</span>
+		<span class="link-item">
+			<span>✦</span>
+			<a href="mailto://ryan.chung.cs@gmail.com" target="_blank">Email</a>
+		</span>
 	</div>
 </HomeLayout>
 
@@ -29,5 +41,29 @@ import HomeContent from "../content/home.md";
 		display: flex;
 		gap: 24px;
 		font-size: 18px;
+	}
+
+	.link-item {
+		display: flex;
+		gap: 24px;
+	}
+
+	.mobile-links-container-star {
+		display: none;
+	}
+
+	@media (max-width: 575px) {
+		.links-container {
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.link-item {
+			gap: 8px;
+		}
+
+		.mobile-links-container-star {
+			display: inline;
+		}
 	}
 </style>
