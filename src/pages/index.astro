@@ -1,0 +1,130 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+// import BlogContainer from "../components/home/BlogContainer.astro";
+import Nav from "../components/home/Nav.astro";
+import ExperienceContainer from "../components/home/ExperienceContainer.astro";
+import SectionHeader from "../components/home/SectionHeader.astro";
+import DottedEmphasis from "../components/home/DottedEmphasis.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body class="grain-container">
+        <main>
+            <div class="fade-in">
+                <Nav />
+            </div>
+
+            <p class="fade-in" style="--animation-order: 2;">
+                Bonjour-Hi! I'm Ryan, a software engineer focused on building
+                distributed, high-performance systems and scalable platforms,
+                from rapidly growing startups to one of the largest financial
+                institutions.
+            </p>
+
+            <hr class="section-divider pop-in" />
+
+            <div class="fade-in" style="--animation-order: 3;">
+                <SectionHeader title="Experience" />
+                <ExperienceContainer />
+            </div>
+
+            <hr class="section-divider pop-in" />
+
+            <!-- <div class="fade-in" style="--animation-order: 4;">
+                <SectionHeader title="Blog" />
+                <BlogContainer />
+            </div>
+
+            <hr class="section-divider pop-in" /> -->
+
+            <div class="fade-in" style="--animation-order: 5;">
+                <SectionHeader title="Community" />
+                <p>
+                    Outside of work hours, I spend time managing <DottedEmphasis
+                        text="open source"
+                        tooltipText="Click to see the CCSS GitHub"
+                        link="https://github.com/CarletonComputerScienceSociety"
+                    /> contributions for the <DottedEmphasis
+                        text="Carleton Computer Science Society"
+                        tooltipText="Click to see the CCSS website"
+                        link="https://ccss.carleton.ca"
+                    />, which supports 3,000 students with resources and events,
+                    such as hackathons and networking events throughout their
+                    academic journeys.
+                </p>
+                <p>
+                    I also mentor ambitious high school students pursuing tech
+                    careers, guiding them through university admissions and
+                    helping them land their first roles in the industry.
+                </p>
+                <p>
+                    Want to chat about anything? <DottedEmphasis
+                        text="Book a call"
+                        tooltipText="Click to book a meeting"
+                        link="https://calendly.com/ryan-chung-cs/chat"
+                        bold={true}
+                    />! <span class="small-note"
+                        >(If there are no slots, my calendar is full 😔)</span
+                    >
+                </p>
+            </div>
+
+            <hr class="section-divider pop-in" />
+
+            <div class="fade-in" style="--animation-order: 6;">
+                <SectionHeader title="Links" />
+                <div class="links-container">
+                    <p class="links-text">
+                        You can reach me on <DottedEmphasis
+                            text="LinkedIn"
+                            tooltipText="Click to see my LinkedIn :)"
+                            link="https://github.com/CarletonComputerScienceSociety"
+                            bold={true}
+                        /> and through <DottedEmphasis
+                            text="email"
+                            tooltipText="Click to go to the mail app"
+                            link="mailto://ryan.chung.cs@gmail.com"
+                            bold={true}
+                        />
+                        <span class="small-note"
+                            >(ryan.chung.cs [at] gmail.com)</span
+                        >!
+                    </p>
+                    <p class="links-text">
+                        My GitHub contributions can be found <DottedEmphasis
+                            text="here"
+                            tooltipText="Click to see GitHub"
+                            link="https://www.github.com/ryangchung"
+                            bold={true}
+                        />.
+                    </p>
+                    <p class="small-note">
+                        // Ryan Chung, 2004 - ඞ. Building interesting things
+                        that impact people.
+                    </p>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+<style>
+    .small-note {
+        color: var(--primary-green-transparent);
+        font-size: 0.9rem;
+    }
+
+    .links-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .links-text {
+        margin: 0;
+    }
+</style>

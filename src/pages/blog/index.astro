@@ -1,0 +1,78 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import Nav from "../../components/home/Nav.astro";
+import FormattedDate from "../../components/blog/FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body class="grain-container">
+        <main>
+            <Nav />
+            <section>
+                <ul>
+                    {
+                        posts.map((post, index) => (
+                            <li
+                                class="fade-in"
+                                style={`--animation-order: ${index};`}
+                            >
+                                <a href={`/blog/${post.id}/`}>
+                                    {post.data.title}
+                                </a>
+                                <p>
+                                    <FormattedDate date={post.data.pubDate} />
+                                </p>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>
+<style>
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--primary-green);
+    }
+
+    a {
+        margin: 0;
+        color: inherit;
+        font-size: 1.25rem;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+
+    p {
+        font-size: 1rem;
+        margin: 0;
+        color: black;
+    }
+</style>

@@ -1,0 +1,90 @@
+---
+import DottedEmphasis from "./DottedEmphasis.astro";
+
+interface HighlightItem {
+    text: string;
+    tooltipText: string;
+    link?: string;
+}
+
+interface Props {
+    company: string;
+    companyUrl: string;
+    duration: string;
+    description: string;
+    highlights?: HighlightItem[];
+    suffix?: string;
+}
+
+const {
+    company,
+    companyUrl,
+    duration,
+    description,
+    highlights = [],
+    suffix = "",
+} = Astro.props;
+---
+
+<div class="experience-entry">
+    <p class="experience-entry__text">
+        {
+            companyUrl ? (
+                <a
+                    href={companyUrl}
+                    class="experience-entry__company experience-entry__company--link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {company}
+                </a>
+            ) : (
+                <span class="experience-entry__company">{company}</span>
+            )
+        }
+        ({duration}) — {description}
+        {
+            highlights.map((highlight, index) => (
+                <>
+                    <DottedEmphasis
+                        text={highlight.text}
+                        tooltipText={highlight.tooltipText}
+                        link={highlight.link ?? undefined}
+                    />
+                    {index < highlights.length - 1 ? " and" : ""}
+                </>
+            ))
+        }
+        {suffix && ` ${suffix}`}
+    </p>
+</div>
+
+<style>
+    .experience-entry {
+        color: var(--primary-green);
+        padding: 1rem;
+        box-sizing: border-box;
+        border: 2px dashed var(--experience-entry-border);
+        transition: border 0.5s ease;
+        border-radius: 4px;
+    }
+
+    .experience-entry:hover {
+        border: 2px solid var(--primary-green);
+    }
+
+    .experience-entry__text {
+        margin: 0;
+    }
+
+    .experience-entry__company {
+        font-weight: bold;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .experience-entry__company--link:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+</style>

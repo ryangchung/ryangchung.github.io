@@ -1,0 +1,86 @@
+---
+import { getCollection } from "astro:content";
+import CtaLink from "../home/CtaLink.astro";
+
+interface Props {
+    limit?: number;
+}
+
+const { limit = 2 } = Astro.props;
+
+const recentPosts = (await getCollection("blog"))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, limit);
+---
+
+<section class="blog-preview">
+    <div class="blog-preview__grid">
+        {
+            recentPosts.map((post) => (
+                <article class="blog-preview__card">
+                    <a href={`/blog/${post.id}/`} class="blog-preview__link">
+                        <h3 class="blog-preview__title">{post.data.title}</h3>
+                    </a>
+                    <p class="blog-preview__description">
+                        {post.data.description}
+                    </p>
+                </article>
+            ))
+        }
+    </div>
+    <div class="blog-preview__cta">
+        <CtaLink href="/blog" text="See the rest →" />
+    </div>
+</section>
+
+<style>
+    .blog-preview {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        color: var(--primary-green);
+    }
+
+    .blog-preview__grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .blog-preview__card {
+        flex: 0 0 45%;
+    }
+
+    .blog-preview__link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .blog-preview__link:hover {
+        text-decoration: underline;
+    }
+
+    .blog-preview__title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-preview__description {
+        font-size: 1rem;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .blog-preview__cta {
+        width: fit-content;
+        align-self: flex-start;
+    }
+
+    @media (max-width: 640px) {
+        .blog-preview__grid {
+            flex-direction: column;
+        }
+    }
+</style>

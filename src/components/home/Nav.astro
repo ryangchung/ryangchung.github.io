@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import profileImg from "../../../public/pfp.png";
+import { NAME } from "../../consts";
+
+// const isActiveLink = (href: string): boolean => {
+//     if (href === "/") return Astro.url.pathname === "/";
+//     return Astro.url.pathname.startsWith(href);
+// };
+---
+
+<header class="navbar">
+    <a class="navbar__root" href="/">
+        <div class="navbar__brand">
+            <Image
+                src={profileImg}
+                class="navbar__avatar"
+                alt={`${NAME}'s profile`}
+                loading="eager"
+            />
+            <h1 class="navbar__title">{NAME}</h1>
+        </div>
+    </a>
+    <!-- <nav class="navbar__menu">
+        {
+            SITE_MAP.map((link) => (
+                <a
+                    href={link.href}
+                    class:list={[
+                        "navbar__link",
+                        isActiveLink(link.href) && "navbar__link--active",
+                    ]}
+                >
+                    {link.text}
+                </a>
+            ))
+        }
+    </nav> -->
+</header>
+
+<style>
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 4rem 0 2rem;
+        gap: 2rem;
+        color: var(--primary-green);
+        flex-wrap: wrap;
+    }
+
+    .navbar__root {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .navbar__brand {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .navbar__avatar {
+        width: 3rem;
+        height: 3rem;
+        clip-path: circle();
+        object-fit: cover;
+    }
+
+    .navbar__title {
+        font-size: 2rem;
+        font-weight: bold;
+        font-style: italic;
+        margin: 0;
+    }
+
+    .navbar__menu {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .navbar__link {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .navbar__link:hover,
+    .navbar__link--active {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    @media (max-width: 640px) {
+        .navbar {
+            gap: 0rem;
+        }
+    }
+</style>

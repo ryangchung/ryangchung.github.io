@@ -1,0 +1,169 @@
+---
+interface Props {
+    text: string;
+    class?: string;
+    tooltipText?: string;
+    link?: string;
+    bold?: boolean;
+}
+
+const {
+    text,
+    class: className = "",
+    tooltipText = "no text here! just existing :)",
+    link,
+    bold = false,
+} = Astro.props;
+
+const classes = ["dotted-emphasis", className, bold ? "bold" : ""];
+---
+
+<!-- Dotted Emphasis -->{
+    link ? (
+        <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={classes}
+            data-tooltip={tooltipText}
+        >
+            {text}
+        </a>
+    ) : (
+        <span class:list={classes} data-tooltip={tooltipText}>
+            {text}
+        </span>
+    )
+}
+
+<style>
+    .dotted-emphasis {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+        text-decoration-style: dashed;
+        color: inherit;
+        cursor: default;
+    }
+
+    .dotted-emphasis:hover {
+        text-decoration-style: solid;
+    }
+
+    a.dotted-emphasis {
+        cursor: pointer;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+</style>
+
+<!-- <!-- Tooltip -->
+<script is:inline>
+    if (!document.querySelector("#global-tooltip")) {
+        const tooltip = document.createElement("div");
+        tooltip.id = "global-tooltip";
+        tooltip.className = "global-tooltip top";
+        document.body.appendChild(tooltip);
+
+        function updateTooltipPosition(e) {
+            // Position above cursor
+            const offsetY = -16;
+            const tooltipRect = tooltip.getBoundingClientRect();
+            let left = e.clientX - tooltipRect.width / 2;
+            let top = e.clientY - tooltipRect.height + offsetY;
+
+            const viewportWidth = window.innerWidth;
+
+            // Adjust left to keep within bounds
+            if (left < 10) {
+                left = 10;
+            } else if (left + tooltipRect.width > viewportWidth - 10) {
+                left = viewportWidth - tooltipRect.width - 10;
+            }
+
+            // Adjust top to keep within bounds
+            if (top < 10) {
+                top = e.clientY + 15;
+                tooltip.classList.add("bottom");
+                tooltip.classList.remove("top");
+            } else {
+                tooltip.classList.add("top");
+                tooltip.classList.remove("bottom");
+            }
+
+            tooltip.style.left = `${left}px`;
+            tooltip.style.top = `${top}px`;
+        }
+
+        document.addEventListener("mouseover", (e) => {
+            const target = e.target?.closest("[data-tooltip]");
+            if (target) {
+                const tooltipText = target.getAttribute("data-tooltip");
+                if (tooltipText && tooltipText.trim() !== "") {
+                    tooltip.textContent = tooltipText;
+                    tooltip.classList.add("visible");
+                    updateTooltipPosition(e);
+                }
+            }
+        });
+
+        document.addEventListener("mouseout", (e) => {
+            const target = e.target?.closest("[data-tooltip]");
+            if (target) {
+                tooltip.classList.remove("visible");
+            }
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            const target = e.target?.closest("[data-tooltip]");
+            if (target) {
+                updateTooltipPosition(e);
+            }
+        });
+    }
+</script>
+<style is:global>
+    .global-tooltip {
+        position: fixed;
+        background-color: var(--tooltip-background);
+        color: white;
+        padding: 0.75rem;
+        border-radius: 4px;
+        font-size: 14px;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+            opacity 0.2s,
+            transform 0.2s;
+        z-index: 1000;
+        max-width: 200px;
+        text-align: center;
+    }
+
+    .global-tooltip::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .global-tooltip.top::after {
+        border-top: 8px solid var(--tooltip-background);
+        bottom: -8px;
+    }
+
+    .global-tooltip.bottom::after {
+        border-bottom: 8px solid var(--tooltip-background);
+        top: -8px;
+    }
+
+    .global-tooltip.visible {
+        opacity: 1;
+    }
+</style>

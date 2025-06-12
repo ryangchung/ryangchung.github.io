@@ -1,0 +1,44 @@
+---
+import ExperienceEntry from "./ExperienceEntry.astro";
+import CtaLink from "../home/CtaLink.astro";
+import { EXPERIENCES } from "../../consts";
+
+interface Props {
+    title?: string;
+    ctaHref?: string;
+    ctaText?: string;
+    showDividers?: boolean;
+}
+
+const {
+    ctaHref = "https://www.linkedin.com/in/ryanckc/",
+    ctaText = "See all my experiences on LinkedIn →",
+} = Astro.props;
+---
+
+<section>
+    <div class="experience-container">
+        {
+            EXPERIENCES.map((experience) => (
+                <ExperienceEntry
+                    company={experience.company}
+                    companyUrl={experience.companyUrl}
+                    duration={experience.duration}
+                    description={experience.description}
+                    highlights={experience.highlights}
+                    suffix={experience.suffix}
+                />
+            ))
+        }
+    </div>
+    <CtaLink href={ctaHref} text={ctaText} isExternal={true} />
+</section>
+
+<style>
+    .experience-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+</style>

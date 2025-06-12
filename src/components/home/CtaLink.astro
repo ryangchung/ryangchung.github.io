@@ -1,0 +1,35 @@
+---
+interface Props {
+    href: string;
+    text: string;
+    isExternal?: boolean;
+}
+
+const { href, text, isExternal = false } = Astro.props;
+---
+
+<a
+    href={href}
+    class="cta-link"
+    target={isExternal ? "_blank" : undefined}
+    rel={isExternal ? "noopener noreferrer" : undefined}
+>
+    {text}
+</a>
+
+<style>
+    .cta-link {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: bold;
+        font-style: italic;
+        text-decoration: none;
+        color: var(--primary-green);
+        transition: color 0.2s ease;
+    }
+
+    .cta-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+</style>
