@@ -59,8 +59,14 @@ const classes = ["dotted-emphasis", className, bold ? "bold" : ""];
     }
 </style>
 
-<!-- <!-- Tooltip -->
+<!-- Tooltip -->
 <script is:inline>
+    function isMobile() {
+        return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent,
+        );
+    }
+
     if (!document.querySelector("#global-tooltip")) {
         const tooltip = document.createElement("div");
         tooltip.id = "global-tooltip";
@@ -100,6 +106,10 @@ const classes = ["dotted-emphasis", className, bold ? "bold" : ""];
         document.addEventListener("mouseover", (e) => {
             const target = e.target?.closest("[data-tooltip]");
             if (target) {
+                // Do not show tooltip on <a> tags if mobile
+                if (isMobile() && target.tagName.toLowerCase() === "a") {
+                    return;
+                }
                 const tooltipText = target.getAttribute("data-tooltip");
                 if (tooltipText && tooltipText.trim() !== "") {
                     tooltip.textContent = tooltipText;
